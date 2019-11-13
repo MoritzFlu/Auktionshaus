@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<meta charset='utf-8'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/register.js"></script>
+</head>
+<body>
+
+<div class="header">
+  <h1>Wat ein Auktionshaus, ey!</h1>
+  <p>Da wo du dein Kram verkaufen tust.</p>
+</div>
+
+<div class="topnav">
+  <a href="/">Zuhause</a>
+  <a href="#">Suche</a>
+  <a href="#" style="float:right">Einloggen</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+    <form>
+        <h2>Registrieren</h2>
+        <p>Username:</p>
+        <input type="text" id="uname">
+        <p>EMail:</p>
+        <input type="text" id="mail">
+        <p>Passwort:</p>
+        <input type="password" id="pwd1">
+        <p>Passwort wiederholen:</p>
+        <input type="password" id="pwd2">
+        <input type="button" class="loginbutton" value="Registrieren" id="reg">
+    </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div id="err"></div>
+</div>
+</body>

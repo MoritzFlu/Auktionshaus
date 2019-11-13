@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <h1>Wat ein Auktionshaus, ey!</h1>
+  <p>Da wo du dein Kram verkaufen tust.</p>
+</div>
+
+<div class="topnav">
+  <a href="/">Zuhause</a>
+  <a href="#">Suche</a>
+  <a href="#" style="float:right">Einloggen</a>
+  <a href="/register" style="float:right">Registrieren</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>Heißer Scheiss!</h2>
+      <h5>Die 5 teuersten Auktionen!</h5>
+
+      <div class="auctcard">
+        <div class="auctdesc">
+          <h3>Rasenmäher</h3>
+          <p>Höchstgebot: 100 Bux</p>
+        </div>
+        <div class="auctimg">
+          <img class="cardimg">Image</img>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>Schnelle Anmeldung</h2>
+      <form name="login">
+        <p>Nutzername:</p>
+        <input type="text">
+        <p>Passwort:</p>
+        <input type="password">
+        <input type="button" value="Anmelden" class="anmeldebutton">
+      </form>
+    </div>
+    <div class="card">
+      <h3>Die freshesten Nutzer:</h3>
+      <div class="username"><p>{{=it.uname1}}</p></div>
+      <div class="username"><p>{{=it.uname2}}</p></div>
+      <div class="username"><p>{{=it.uname3}}</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
