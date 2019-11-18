@@ -2,18 +2,40 @@ const express = require('express')
 var bodyParser = require("body-parser")
 var dot = require("dot").process({path: "./templates"});
 const app = express()
-const port = 3000
+var port = 0
+var db_host = ''
+var my_ip = '0.0.0.0'
+var db_port = 0
 
 const pgp = require('pg-promise')(/* initialization options */);
 
+var argv = require('minimist')(process.argv.slice(2));
+try {
+    port = argv['port']
+}
+catch(error) {
+    port = 3000
+}
+try {
+    db_host = argv['db']
+}
+catch(error) {
+    db_host = 'localhost'
+}
+try {
+    db_port = argv['db_port']
+}
+catch(error) {
+    db_port = 5432
+}
 
 //Connecting to DB
 const cn = {
-    host: 'localhost', // server name or IP address;
-    port: 5432,
+    host: db_host, // server name or IP address;
+    port: db_port,
     database: 'auktionshaus',
     user: 'postgres',
-    password: 'cZ547ioD3s'
+    password: '12345'
 };
 const db = pgp(cn);
 
@@ -61,10 +83,7 @@ app.get('/register.js', function(req, res) {
     res.sendFile('./static/register.js', { root: __dirname });
 });
 
-let exec_db = function(query, params) {
-    return db.one(query, params);
-};
 
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port,my_ip,() => console.log(`Example app listening on port ${my_ip}:${port}! DB on: ${db_host}`))
