@@ -2,32 +2,21 @@ const express = require('express')
 var bodyParser = require("body-parser")
 var dot = require("dot").process({path: "./templates"});
 const app = express()
-var port = 0
-var db_host = ''
 var my_ip = '0.0.0.0'
-var db_port = 0
+
 
 const pgp = require('pg-promise')(/* initialization options */);
 
+let set_arg = function(name, default_val) {
+    if (!(typeof(argv[name]) == 'undefined')) {return argv[name];}
+    else {return default_val;}
+};
+
 var argv = require('minimist')(process.argv.slice(2));
-try {
-    port = argv['port']
-}
-catch(error) {
-    port = 3000
-}
-try {
-    db_host = argv['db']
-}
-catch(error) {
-    db_host = 'localhost'
-}
-try {
-    db_port = argv['db_port']
-}
-catch(error) {
-    db_port = 5432
-}
+var port = set_arg('port', 3000)
+var db_host = set_arg('db', 'localhost')
+var db_port = set_arg('db_port', 5432)
+
 
 //Connecting to DB
 const cn = {
