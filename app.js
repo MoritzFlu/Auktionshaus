@@ -16,15 +16,17 @@ var argv = require('minimist')(process.argv.slice(2));
 var port = set_arg('port', 3000)
 var db_host = set_arg('db', 'localhost')
 var db_port = set_arg('db_port', 5432)
-
+var db_username = set_arg('db_user', 'postgres')
+var db_pw = set_arg('db_pw', '12345')
+var db_name = set_arg('db_name', 'auktionshaus')
 
 //Connecting to DB
 const cn = {
     host: db_host, // server name or IP address;
     port: db_port,
-    database: 'auktionshaus',
-    user: 'postgres',
-    password: '12345'
+    database: db_name,
+    user: db_username,
+    password: db_pw
 };
 const db = pgp(cn);
 
