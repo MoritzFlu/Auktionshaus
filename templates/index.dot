@@ -20,6 +20,23 @@
 
 <div class="row">
   <div class="leftcolumn">
+  <div class="card">
+    <h2>Auktion erstellen</h2>
+    <p>Artikelname</p>
+    <input type="text">
+    <p>Artikelbeschreibung</p>
+    <input type="text">
+    <p>Zustand</p>
+     <select>
+      <option value="neu">Neu</option>
+      <option value="gebraucht">Gebraucht</option>
+      <option value="alt">Alt</option>
+      <option value="kaputt">Kaputt</option>
+    </select>
+    <p>Startgebot</p>
+    <input type="number">
+    <button>Erstellen!</button>
+  </div>
     <div class="card">
       <h2>Heißer Scheiss!</h2>
       <h5>Die 5 teuersten Auktionen!</h5>
@@ -49,9 +66,9 @@
     </div>
     <div class="card">
       <h3>Die freshesten Nutzer:</h3>
-      <div class="username"><p>{{=it.uname1}}</p></div>
-      <div class="username"><p>{{=it.uname2}}</p></div>
-      <div class="username"><p>{{=it.uname3}}</p></div>
+      {{ for(var name in it["unames"]) { }}
+      <div class="username"><p>{{=it["unames"][name]}}</p></div>
+      {{ } }}
     </div>
   </div>
 </div>

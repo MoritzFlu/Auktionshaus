@@ -39,11 +39,15 @@ app.use(bodyParser.urlencoded({
 app.get('/', function(req, res) {
     db.many("SELECT username FROM users ORDER BY cdate DESC LIMIT 3", [])
     .then(response => {
-        var page = dot.index({uname1:response[0].username,uname2:response[1].username,uname3:response[2].username});
+        var unames_arr = [];
+        response.forEach(function(item) {unames_arr.push(item.username) });
+        var page = dot.index({'unames':unames_arr});
         res.end(page);
     })
     .catch(error => {
         console.log(error);
+        var page = dot.index({'unames':[]});
+        res.end(page);
     });
 });
 
