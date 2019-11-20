@@ -77,16 +77,15 @@
   }
 
   .auctdesc{
-    background-color: lightskyblue;
+    background-color: rgba(122, 128, 127, 0.37);
     padding: 10px;
     column-span: 1;
     width: 100%;
   }
   .auctimg{
-    background-color: lightsalmon;
     padding: 10px;
     column-span: 1;
-    width: 50%;
+    width: 100%;
     float: right;
   }
 

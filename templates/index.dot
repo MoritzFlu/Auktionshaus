@@ -36,7 +36,7 @@
     </select>
     <p>Zustand</p>
      <select id="auct_state">
-      <option value="neu">Gebraucht</option>
+      <option value="neu">Neu</option>
       <option value="gebraucht">Gebraucht</option>
       <option value="alt">Alt</option>
       <option value="kaputt">Kaputt</option>
@@ -57,7 +57,8 @@
           <p>{{=it["entries"][entry]["description"]}}</p>
           <p>Höchstgebot: {{=it["entries"][entry]["max"]}}</p>
           <p>Kategorie: {{=it["entries"][entry]["name"]}}</p>
-          <p>Neues Gebot: <input type="nubmer" id="bidval_{{=it["entries"][entry]["auctid"]}}">
+          <p>Neues Gebot: </p>
+          <input type="nubmer" id="bidval_{{=it["entries"][entry]["auctid"]}}">
           <button onClick="place_bid({{=it["entries"][entry]["auctid"]}})">Bieten!</button>
         </div>
         <div class="auctimg">
@@ -89,7 +90,7 @@
 </div>
 
 <div class="footer">
-  <h2>Footer</h2>
+  <h2>Servus</h2>
 </div>
 
 </body>
