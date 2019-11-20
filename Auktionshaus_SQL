@@ -5,7 +5,7 @@
 -- Dumped from database version 12.0
 -- Dumped by pg_dump version 12.0
 
--- Started on 2019-11-19 21:22:27
+-- Started on 2019-11-20 14:59:52
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,123 +18,88 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
 --
--- TOC entry 202 (class 1259 OID 16394)
--- Name: Auctions; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public."Auctions" (
-    "AuctID" integer NOT NULL,
-    "Description" text,
-    "Itemname" text,
-    "Condition" text
-);
-
-
-ALTER TABLE public."Auctions" OWNER TO postgres;
-
---
--- TOC entry 207 (class 1259 OID 16429)
--- Name: Auctions_AuctID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-ALTER TABLE public."Auctions" ALTER COLUMN "AuctID" ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public."Auctions_AuctID_seq"
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
--- TOC entry 204 (class 1259 OID 16404)
--- Name: Bids; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public."Bids" (
-    "BidID" integer NOT NULL,
-    "BidderID" integer NOT NULL,
-    "Bid" integer NOT NULL,
-    "AuctID" integer
-);
-
-
-ALTER TABLE public."Bids" OWNER TO postgres;
-
---
--- TOC entry 203 (class 1259 OID 16402)
--- Name: Bids_BidID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-ALTER TABLE public."Bids" ALTER COLUMN "BidID" ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public."Bids_BidID_seq"
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
--- TOC entry 206 (class 1259 OID 16416)
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.users (
-    userid integer NOT NULL,
-    pwhash text NOT NULL,
-    email text NOT NULL,
-    username text NOT NULL,
-    cdate timestamp(4) without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
-);
-
-
-ALTER TABLE public.users OWNER TO postgres;
-
---
--- TOC entry 205 (class 1259 OID 16414)
--- Name: Users_UserID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-ALTER TABLE public.users ALTER COLUMN userid ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public."Users_UserID_seq"
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
--- TOC entry 2840 (class 0 OID 16394)
+-- TOC entry 2856 (class 0 OID 16394)
 -- Dependencies: 202
--- Data for Name: Auctions; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: auctions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Auctions" ("AuctID", "Description", "Itemname", "Condition") FROM stdin;
+COPY public.auctions (auctid, description, itemname, condition, categoryid, imagename) FROM stdin;
+9	ddee	dee	gebraucht	3	\N
+10	ddee	dee	gebraucht	3	heo7skrqg6v31.jpg
+11	Ein neuer Raum für Studenten!	StAR	neu	3	Waende_STAR.PNG
+12	Ein neuer Raum für Studenten!	StAR	neu	3	Waende_STAR.PNG
+13	Ein neuer Raum für Studenten!	StAR	neu	3	Waende_STAR.PNG
+14	Ein neuer Raum für Studenten!	StAR	neu	3	Waende_STAR.PNG
+15	Kaum benutzt	PC	neu	1	FRoSTA-1130073597.jpg
 \.
 
 
 --
--- TOC entry 2842 (class 0 OID 16404)
+-- TOC entry 2858 (class 0 OID 16404)
 -- Dependencies: 204
--- Data for Name: Bids; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: bids; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Bids" ("BidID", "BidderID", "Bid", "AuctID") FROM stdin;
+COPY public.bids (bidid, bidderid, bid, auctid) FROM stdin;
+1	\N	123	11
+2	\N	54321	15
+3	\N	123	11
+4	\N	1234	11
+5	\N	9999	11
 \.
 
 
 --
--- TOC entry 2844 (class 0 OID 16416)
+-- TOC entry 2865 (class 0 OID 16464)
+-- Dependencies: 211
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.categories (id, name) FROM stdin;
+1	Technik
+2	Garten
+3	Möbel
+4	Essen
+\.
+
+
+--
+-- TOC entry 2863 (class 0 OID 16454)
+-- Dependencies: 209
+-- Data for Name: images; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.images (id, name) FROM stdin;
+1	Waende_STAR.PNG
+2	Rendering_STAR.PNG
+3	Rendering_STAR.PNG
+4	heo7skrqg6v31.jpg
+5	188083_Wirdsogemachtoder_kZh91sJ.jpg
+6	188083_Wirdsogemachtoder_kZh91sJ.jpg
+7	188083_Wirdsogemachtoder_kZh91sJ.jpg
+8	heo7skrqg6v31.jpg
+9	heo7skrqg6v31.jpg
+10	heo7skrqg6v31.jpg
+11	heo7skrqg6v31.jpg
+12	heo7skrqg6v31.jpg
+13	heo7skrqg6v31.jpg
+14	heo7skrqg6v31.jpg
+15	heo7skrqg6v31.jpg
+16	heo7skrqg6v31.jpg
+17	heo7skrqg6v31.jpg
+18	heo7skrqg6v31.jpg
+19	heo7skrqg6v31.jpg
+20	heo7skrqg6v31.jpg
+21	heo7skrqg6v31.jpg
+22	heo7skrqg6v31.jpg
+23	heo7skrqg6v31.jpg
+24	heo7skrqg6v31.jpg
+\.
+
+
+--
+-- TOC entry 2860 (class 0 OID 16416)
 -- Dependencies: 206
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -149,25 +114,43 @@ COPY public.users (userid, pwhash, email, username, cdate) FROM stdin;
 
 
 --
--- TOC entry 2851 (class 0 OID 0)
+-- TOC entry 2871 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: Auctions_AuctID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Auctions_AuctID_seq"', 1, false);
+SELECT pg_catalog.setval('public."Auctions_AuctID_seq"', 15, true);
 
 
 --
--- TOC entry 2852 (class 0 OID 0)
+-- TOC entry 2872 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: Bids_BidID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Bids_BidID_seq"', 1, false);
+SELECT pg_catalog.setval('public."Bids_BidID_seq"', 5, true);
 
 
 --
--- TOC entry 2853 (class 0 OID 0)
+-- TOC entry 2873 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: Categories_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Categories_ID_seq"', 4, true);
+
+
+--
+-- TOC entry 2874 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: Images_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Images_ID_seq"', 24, true);
+
+
+--
+-- TOC entry 2875 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: Users_UserID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -175,70 +158,7 @@ SELECT pg_catalog.setval('public."Bids_BidID_seq"', 1, false);
 SELECT pg_catalog.setval('public."Users_UserID_seq"', 38, true);
 
 
---
--- TOC entry 2707 (class 2606 OID 16437)
--- Name: users Email already exists; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT "Email already exists" UNIQUE (email);
-
-
---
--- TOC entry 2705 (class 2606 OID 16408)
--- Name: Bids ID; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Bids"
-    ADD CONSTRAINT "ID" PRIMARY KEY ("BidID");
-
-
---
--- TOC entry 2709 (class 2606 OID 16439)
--- Name: users Username already exists; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT "Username already exists" UNIQUE (username);
-
-
---
--- TOC entry 2703 (class 2606 OID 16401)
--- Name: Auctions Users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Auctions"
-    ADD CONSTRAINT "Users_pkey" PRIMARY KEY ("AuctID");
-
-
---
--- TOC entry 2711 (class 2606 OID 16423)
--- Name: users Users_pkey1; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT "Users_pkey1" PRIMARY KEY (userid);
-
-
---
--- TOC entry 2712 (class 2606 OID 16409)
--- Name: Bids AuctID; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Bids"
-    ADD CONSTRAINT "AuctID" FOREIGN KEY ("AuctID") REFERENCES public."Auctions"("AuctID") ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 2713 (class 2606 OID 16424)
--- Name: Bids BidderID; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Bids"
-    ADD CONSTRAINT "BidderID" FOREIGN KEY ("BidderID") REFERENCES public.users(userid) ON UPDATE CASCADE ON DELETE CASCADE NOT VALID;
-
-
--- Completed on 2019-11-19 21:22:28
+-- Completed on 2019-11-20 14:59:52
 
 --
 -- PostgreSQL database dump complete

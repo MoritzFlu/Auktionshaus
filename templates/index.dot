@@ -3,6 +3,8 @@
 <head>
 <meta charset='utf-8'>
 <link rel="stylesheet" href="style.css">
+<script src="/index.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -23,33 +25,46 @@
   <div class="card">
     <h2>Auktion erstellen</h2>
     <p>Artikelname</p>
-    <input type="text">
+    <input id="auct_name" type="text">
     <p>Artikelbeschreibung</p>
-    <input type="text">
+    <input id="auct_desc" type="text">
+    <p>Kategorie</p>
+    <select id="auct_cat">
+      {{ for(var cat in it["cats"]) { }}
+      <option value={{=it["cats"][cat]}}>{{=it["cats"][cat]}}</option>
+      {{ } }}
+    </select>
     <p>Zustand</p>
-     <select>
-      <option value="neu">Neu</option>
+     <select id="auct_state">
+      <option value="neu">Gebraucht</option>
       <option value="gebraucht">Gebraucht</option>
       <option value="alt">Alt</option>
       <option value="kaputt">Kaputt</option>
     </select>
     <p>Startgebot</p>
-    <input type="number">
-    <button>Erstellen!</button>
+    <input id="auct_bid" type="number">
+    <p>Bild</p>
+    <input type="file" accept="image/*" name="file" id="file">
+    <button id="auct_create">Erstellen!</button>
   </div>
     <div class="card">
       <h2>Heißer Scheiss!</h2>
-      <h5>Die 5 teuersten Auktionen!</h5>
-
+      <h5>Alle Auktionen.</h5>
+      {{ for(var entry in it["entries"]) { }}
       <div class="auctcard">
         <div class="auctdesc">
-          <h3>Rasenmäher</h3>
-          <p>Höchstgebot: 100 Bux</p>
+          <h3>{{=it["entries"][entry]["itemname"]}}</h3>
+          <p>{{=it["entries"][entry]["description"]}}</p>
+          <p>Höchstgebot: {{=it["entries"][entry]["max"]}}</p>
+          <p>Kategorie: {{=it["entries"][entry]["name"]}}</p>
+          <p>Neues Gebot: <input type="nubmer" id="bidval_{{=it["entries"][entry]["auctid"]}}">
+          <button onClick="place_bid({{=it["entries"][entry]["auctid"]}})">Bieten!</button>
         </div>
         <div class="auctimg">
-          <img class="cardimg">Image</img>
+          <img class="cardimg" src="/storage/{{=it["entries"][entry]["imagename"]}}"></img>
         </div>
       </div>
+      {{ } }}
 
     </div>
   </div>
